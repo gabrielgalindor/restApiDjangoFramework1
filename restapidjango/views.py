@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import exceptions
 from restapidjango.models import UserProfile
+from card import *
 
 
 # Create your views here.
@@ -23,7 +24,7 @@ class pruebaAuth(APIView):
             uservalidation = UserProfile.objects.filter(email=username).values('id')
             dict_user = uservalidation[0]
             validate_id = dict_user['id']
-            tokenvalidation = Token.objects.filter(user_id=1).values('key')
+            tokenvalidation = Token.objects.filter(user_id=validate_id).values('key')
             dict_token = tokenvalidation[0]
             value_token = dict_token['key']
             if token == value_token:
