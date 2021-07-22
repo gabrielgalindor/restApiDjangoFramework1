@@ -298,8 +298,10 @@ itsNone = True
 while itsNone:
     itsNone = credit1.find_afterIsNull()
     n+=1
-print(credit1.get_creditCard())
-
+#print(credit1.get_creditCard())
+listafinal = credit1.get_creditCard()
+finalstring = '-'.join(listafinal)
+print(finalstring)
 
 
 #print(credit1.get_disorderList())

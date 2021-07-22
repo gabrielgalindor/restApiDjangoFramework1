@@ -1,8 +1,6 @@
-import readcard_functions as lista
-
+from restapidjango.readcard_functions import *
 # CLASES 
 # Clase Readkeylog permite convertir el archivo en una lista de strings para poder trabajar con ellos
-
 class readkeylog:
     def __init__(self, filename):
         self.filename = filename
@@ -47,7 +45,7 @@ class creditcard:
     
     def add_number(self,allstring):
         for single_string in allstring:
-            list_string = lista.splitall(single_string)
+            list_string = splitall(single_string)
             k = 0
             for knumber in list_string:
                 before = []
@@ -59,9 +57,9 @@ class creditcard:
                     for i in list_string[:k:]:
                         before.append(i)
                 itsrepeat = False
-                if lista.checkIfDuplicates_1(list_string):
-                    check_repeat = lista.notset(list_string)
-                    itsrepeat = lista.checkSecureInList(check_repeat,knumber)
+                if checkIfDuplicates_1(list_string):
+                    check_repeat = notset(list_string)
+                    itsrepeat = checkSecureInList(check_repeat,knumber)
                 dictinfo = {"id":knumber,"before":before, "after":after, "is_repeat":itsrepeat}
                 tuplafinal = (knumber,dictinfo)
                 self.numbers_disorder.append(tuplafinal)
@@ -109,7 +107,7 @@ class creditcard:
             remove_element = self.numbers_disorder2[k]
             if i[0] == afters:
                 self.numbers_disorder2.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['after'],afters):
+            if checkSecureInList(temp_dict['after'],afters):
                 remove_list = temp_dict['after']
                 remove_list.remove(afters)
             k+=1
@@ -119,7 +117,7 @@ class creditcard:
             remove_element = self.numbers_disorder2[k]
             if i[0] == afters:
                 self.numbers_disorder2.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['after'],afters):
+            if checkSecureInList(temp_dict['after'],afters):
                 remove_list = temp_dict['after']
                 remove_list.remove(afters)
             k+=1
@@ -129,7 +127,7 @@ class creditcard:
             remove_element = self.numbers_disorder2[k]
             if i[0] == afters:
                 self.numbers_disorder2.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['after'],afters):
+            if checkSecureInList(temp_dict['after'],afters):
                 remove_list = temp_dict['after']
                 remove_list.remove(afters)
             k+=1
@@ -176,7 +174,7 @@ class creditcard:
             remove_element = self.numbers_disorder[k]
             if i[0] == befores:
                 self.numbers_disorder.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['before'],befores):
+            if checkSecureInList(temp_dict['before'],befores):
                 remove_list = temp_dict['before']
                 remove_list.remove(befores)
             k+=1
@@ -186,7 +184,7 @@ class creditcard:
             remove_element = self.numbers_disorder[k]
             if i[0] == befores:
                 self.numbers_disorder.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['before'],befores):
+            if checkSecureInList(temp_dict['before'],befores):
                 remove_list = temp_dict['before']
                 remove_list.remove(befores)
             k+=1
@@ -196,7 +194,7 @@ class creditcard:
             remove_element = self.numbers_disorder[k]
             if i[0] == befores:
                 self.numbers_disorder.remove(remove_element)
-            if lista.checkSecureInList(temp_dict['before'],befores):
+            if checkSecureInList(temp_dict['before'],befores):
                 remove_list = temp_dict['before']
                 remove_list.remove(befores)
             k+=1
@@ -214,7 +212,7 @@ class creditcard:
         not_sublist = True
         while not_sublist and position < l:
             compare_list = inverse_after[position:l:]
-            not_sublist = lista.is_Sublist(self.befores_list,compare_list)
+            not_sublist = is_Sublist(self.befores_list,compare_list)
             position+=1
         compare_list = inverse_after[position:l:]
         self.credit_card += compare_list

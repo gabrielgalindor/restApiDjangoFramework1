@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import exceptions
 from restapidjango.models import UserProfile
-from card import *
-
+from restapidjango.readcard_functions import *
+from restapidjango.readcard_class import *
+import restframeworkdjango.settings as settings
+import sys
 
 # Create your views here.
 class HelloApi(APIView):
@@ -32,7 +34,10 @@ class pruebaAuth(APIView):
             else:
                 validationauth = False
             respuesta1 = {"message":"Hola Mundo desde la API", "username":username, "token": token, "Validacion_Login":validationauth}
+            if validationauth:
+                keylogfile = readkeylog(settings.STATIC_URL+'keylog.txt')
+                keylogfile.getlistnumbers()
             return Response(respuesta1)
-        except:
-            return Response({"mesagge":"error ha ingresado un usuario o token no valido"})
+        except Exception as e:
+            return Response({"mesagge":str(e)})
         
