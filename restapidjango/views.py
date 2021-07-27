@@ -33,10 +33,26 @@ class pruebaAuth(APIView):
                 validationauth = True
             else:
                 validationauth = False
-            respuesta1 = {"message":"Hola Mundo desde la API", "username":username, "token": token, "Validacion_Login":validationauth}
+            respuesta1 = {"message":"Token Invalido","Archivo_Usado": "keylog.txt","username":username, "token": token, "Validacion_Login":validationauth}
             if validationauth:
                 keylogfile = readkeylog(settings.STATIC_URL+'keylog.txt')
-                keylogfile.getlistnumbers()
+                listnumbers = keylogfile.getlistnumbers()
+                credit1 = creditcard()
+                credit1.add_number(listnumbers)
+                n = 0
+                itsNone = True
+                while itsNone:
+                    itsNone = credit1.find_beforeIsNull()
+                    n+=1
+                n = 0
+                itsNone = True
+                while itsNone:
+                    itsNone = credit1.find_afterIsNull()
+                    n+=1
+                #print(credit1.get_creditCard())
+                listafinal = credit1.get_creditCard()
+                finalstring = '-'.join(listafinal)
+                respuesta1['message']=finalstring
             return Response(respuesta1)
         except Exception as e:
             return Response({"mesagge":str(e)})
