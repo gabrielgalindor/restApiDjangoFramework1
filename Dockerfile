@@ -25,3 +25,5 @@ RUN apt update
 RUN cd var
 
 RUN git clone https://ggalindo-acreditta:dXJMVRZqLNtwY978@github.com/gabrielgalindor/restApiDjangoFramework1.git
+
+RUN yes | apt-get install mysql-server
